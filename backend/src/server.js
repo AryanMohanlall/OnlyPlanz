@@ -1,12 +1,16 @@
-const express = require('express')
+const express = require('express');
 const setTimeout = require('node:timers/promises').setTimeout;
-const app = express()
-const port = 3000
+const app = express();
+const port = 3000;
+const { connectDB } = require('./db');
 
-//Route imports
+// Route imports
 const userRoutes = require('./routes/userRoutes');
 
 app.use(express.json());
+
+// Connect to MongoDB
+connectDB();
 
 app.use('/users', userRoutes);
 
@@ -26,5 +30,5 @@ async function spinner(){
 
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}`);
-  spinner()
+  //spinner()
 });
