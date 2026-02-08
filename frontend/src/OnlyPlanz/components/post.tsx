@@ -1,5 +1,8 @@
 import { View, Text, Image, Pressable } from "react-native";
 import tw from "twrnc";
+import CommentSection from "./comment-section";
+import { useState } from "react";
+import { useRouter } from "expo-router";
 
 type PostProps = {
   username: string;
@@ -8,17 +11,28 @@ type PostProps = {
 };
 
 export default function Post({ username, content, image }: PostProps) {
-  
-    return (
-    <Pressable style={tw`bg-white rounded-2xl p-4 mb-4 shadow-md`}>
+    const [visible, setVisible] = useState(false);
+    const show = ()=>{setVisible(true)};
+    const hide = ()=>{setVisible(false)};
+    const router = useRouter();
+
+    return(
+    <>
+    <Pressable style={tw`bg-white rounded-2xl p-4 mb-4 shadow-md`}
+      onPress={show}  
+    >
       {/* Header */}
-      <View style={tw`flex-row items-center mb-3`}>
-        <Image
-          source={{ uri: image || "https://www.google.com/imgres?q=profile%20pic%20defualt&imgurl=https%3A%2F%2Fi.pinimg.com%2F736x%2F82%2F85%2F96%2F828596ef925a10e8c1a76d3a3be1d3e5.jpg&imgrefurl=https%3A%2F%2Fwww.pinterest.com%2Fpin%2Ftiktok-default-profile-picture-sticker-sticker-in-2025--180003317647404426%2F&docid=ZqgBYz_PsFPpVM&tbnid=5bLGzwkK3pL15M&vet=12ahUKEwj-7rqKiMiSAxVfUUEAHeAwF-MQnPAOegQIFxAB..i&w=736&h=736&hcb=2&ved=2ahUKEwj-7rqKiMiSAxVfUUEAHeAwF-MQnPAOegQIFxAB" }}
-          style={tw`w-10 h-10 rounded-full mr-3`}
-        />
-        <Text style={tw`font-semibold text-base`}>{username}</Text>
-      </View>
+      <Pressable
+        onPress={()=>{router.push("/view_profile")}}
+      >
+        <View style={tw`flex-row items-center mb-3`}>
+          <Image
+            source={{ uri: image || "https://www.google.com/imgres?q=profile%20pic%20defualt&imgurl=https%3A%2F%2Fi.pinimg.com%2F736x%2F82%2F85%2F96%2F828596ef925a10e8c1a76d3a3be1d3e5.jpg&imgrefurl=https%3A%2F%2Fwww.pinterest.com%2Fpin%2Ftiktok-default-profile-picture-sticker-sticker-in-2025--180003317647404426%2F&docid=ZqgBYz_PsFPpVM&tbnid=5bLGzwkK3pL15M&vet=12ahUKEwj-7rqKiMiSAxVfUUEAHeAwF-MQnPAOegQIFxAB..i&w=736&h=736&hcb=2&ved=2ahUKEwj-7rqKiMiSAxVfUUEAHeAwF-MQnPAOegQIFxAB" }}
+            style={tw`w-10 h-10 rounded-full mr-3`}
+          />
+          <Text style={tw`font-semibold text-base`}>{username}</Text>
+        </View>
+      </Pressable>
 
       {/* Content */}
       <Text style={tw`text-gray-800 mb-3`}>
@@ -32,5 +46,9 @@ export default function Post({ username, content, image }: PostProps) {
         resizeMode="cover"
       />
     </Pressable>
+
+          {/* Modal */}
+      <CommentSection visible={visible} onClose={() => setVisible(false)} />
+  </>
   );
 }

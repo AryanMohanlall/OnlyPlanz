@@ -1,4 +1,4 @@
-import { View, Text, Button, ScrollView } from 'react-native';
+import { View, Text, Button, ScrollView, TextInput } from 'react-native';
 import { Link, Redirect } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'twrnc';
@@ -12,7 +12,14 @@ export default function Home() {
   return (
     <SafeAreaView style={tw`flex-1 bg-sky-600 opacity-85 px-6 justify-center`}>
       <ScrollView contentContainerStyle={tw`p-1`} showsVerticalScrollIndicator={false}>
-        
+        <View>
+            <TextInput
+              style={tw`bg-gray-900 text-white px-4 py-4 rounded-xl mb-4`}
+              
+              placeholder='Search'
+            />
+        </View>
+
         <Post  
           username="john_doe"
           content="This is my first post on this app!"
