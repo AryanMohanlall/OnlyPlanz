@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
-const { connectDB } = require('./db');
+const { connectDB } = require('./config/db');
+const { testSave } = require('./test');
 
 // Route imports
 const userRoutes = require('./routes/userRoutes');
@@ -20,4 +21,5 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}`);
+
 });
