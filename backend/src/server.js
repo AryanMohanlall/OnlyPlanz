@@ -1,17 +1,14 @@
 import express from 'express';
 const app = express();
 const port = process.env.PORT || 3000;
-import { testSave } from './test.js';
+import { connectDB } from './config/db.js';
 
-// Route imports
-import userRoutes from './routes/userRoutes.js';
+import userRoutes from './routes/user.routes.js';
 
 app.use(express.json());
 
 // Connect to MongoDB
-//connectDB();
-
-testSave();
+await connectDB();
 
 app.use('/users', userRoutes);
 

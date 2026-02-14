@@ -16,10 +16,8 @@ dns.setServers(['8.8.8.8', '1.1.1.1']);
 
 const connectDB = async () => {
   try {
-    console.log(process.env.DB_USERNAME);
-    console.log(process.env.DB_PASSWORD);
 
-    const conn = await mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@onlyplanz.jxed6sl.mongodb.net/?appName=OnlyPlanz`, {
+    const conn = await mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@onlyplanz.jxed6sl.mongodb.net/OnlyPlanz?appName=OnlyPlanz`, {
 
     });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
