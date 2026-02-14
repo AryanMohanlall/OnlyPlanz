@@ -4,10 +4,24 @@ import  userService from '../services/user.service.js'
 const createUser = async (req, res) => {
     try {
         const user = await userService.createUser(req.body);
+        user.password = undefined;
         res.status(201).json(user);
     } catch (error) {
+        console.error(error.stack);
         res.status(500).json({ error: error.message });
     }
+};
+
+//post 
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const { user, token } = await userService.loginUser(email, password);
+
+    res.json({ user, token });
+  } catch (err) {
+    res.status(401).json({ error: err.message });
+  }
 };
 
 //get
@@ -35,5 +49,6 @@ const getAllUsers = async(req, res)=>{
 export {
   createUser,
   getUserById,
-  getAllUsers
+  getAllUsers,
+  loginUser
 }
