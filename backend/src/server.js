@@ -1,16 +1,17 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 const port = process.env.PORT || 3000;
-const { connectDB } = require('./config/db');
-const { testSave } = require('./test');
+import { testSave } from './test.js';
 
 // Route imports
-const userRoutes = require('./routes/userRoutes');
+import userRoutes from './routes/userRoutes.js';
 
 app.use(express.json());
 
 // Connect to MongoDB
-connectDB();
+//connectDB();
+
+testSave();
 
 app.use('/users', userRoutes);
 
