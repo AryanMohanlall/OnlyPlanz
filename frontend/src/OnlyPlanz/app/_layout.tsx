@@ -2,6 +2,11 @@ import { Stack } from 'expo-router';
 
 export default function RootLayout() {
   return (
+<<<<<<< HEAD
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="login" />
+      <Stack.Screen name="(tabs)" />
+=======
     <Stack>
       {/* (auth) is the folder for Login/Signup */}
       <Stack.Screen 
@@ -20,6 +25,7 @@ export default function RootLayout() {
         name="modal" 
         options={{ presentation: 'modal', title: 'Info' }} 
       />
+>>>>>>> a24bbbea6ecefea94f83df310c2f3eafdbf257ea
     </Stack>
   );
 }
