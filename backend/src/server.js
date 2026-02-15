@@ -1,23 +1,35 @@
-import express from 'express';
-const app = express();
-const port = process.env.PORT || 3000;
+import { createServer } from 'http';
+import { Server } from 'socket.io';
+
+import app from './app.js';
 import { connectDB } from './config/db.js';
 
-import userRoutes from './routes/user.routes.js';
+const port = process.env.PORT || 3000;
 
-app.use(express.json());
+const server = createServer(app);
 
-// Connect to MongoDB
-await connectDB();
-
-app.use('/users', userRoutes);
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+const io = new Server(server, {
+  cors: {
+    origin: '*',
+  },
 });
 
-
-app.listen(port, () => {
-  console.log(`Listening on http://localhost:${port}`);
-
+io.on('connection', (socket) => {
+  console.log(`${socket.id} connected`);
 });
+
+async function startServer() {
+  try {
+    await connectDB();
+
+    server.listen(port, () => {
+      console.log(`Listening on http://localhost:${port}`);
+    });
+
+  } catch (error) {
+    console.error('Startup failed:', error);
+    process.exit(1);
+  }
+}
+
+startServer();
