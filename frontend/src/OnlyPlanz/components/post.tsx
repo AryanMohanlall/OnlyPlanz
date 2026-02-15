@@ -1,8 +1,10 @@
 import { View, Text, Image, Pressable } from "react-native";
 import tw from "twrnc";
 import CommentSection from "./comment-section";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "expo-router";
+import { Send } from 'lucide-react-native';
+import { Button } from "@react-navigation/elements";
 
 type PostProps = {
   username: string;
@@ -45,6 +47,14 @@ export default function Post({ username, content, image }: PostProps) {
         style={tw`w-full h-48 rounded-xl mb-3`}
         resizeMode="cover"
       />
+
+      <Pressable
+        style={tw`absolute bottom-3 right-3 p-2 rounded-full shadow-md`}
+        onPress={()=>router.push("/(tabs)/chatroom")}
+      >
+        <Send size={20} color="black"/>
+      </Pressable>
+      
     </Pressable>
 
           {/* Modal */}

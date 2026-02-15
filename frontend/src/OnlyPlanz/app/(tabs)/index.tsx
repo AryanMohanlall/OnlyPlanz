@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { View, Text, Button, ScrollView, TextInput } from 'react-native';
 import { Link, Redirect } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -39,22 +38,5 @@ export default function Home() {
 
       </ScrollView>
     </SafeAreaView>
-=======
-import { View, Text, Pressable } from 'react-native';
-import { useRouter } from 'expo-router';
-
-export default function HomeScreen() {
-  const router = useRouter();
-
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Welcome Home!</Text>
-      
-      {/* This is how you navigate to the (auth) folder */}
-      <Pressable onPress={() => router.push('/(auth)/login')}>
-        <Text style={{ color: 'blue', marginTop: 20 }}>Go to Login</Text>
-      </Pressable>
-    </View>
->>>>>>> a24bbbea6ecefea94f83df310c2f3eafdbf257ea
   );
 }
