@@ -1,35 +1,38 @@
-import User from '../models/user.model.js';
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken';
-
 class UserService {
-  async createUser(data) {
-    return await User.create(data);
+  constructor({ UserModel, bcryptLib, jwtLib, jwtSecret }) {
+    this.User = UserModel;
+    this.bcrypt = bcryptLib;
+    this.jwt = jwtLib;
+    this.jwtSecret = jwtSecret;
   }
 
-    async loginUser(email, password) {
-        const user = await User.findOne({ email });
-        if (!user) throw new Error("User not found");
+  async createUser(data) {
+    return await this.User.create(data);
+  }
 
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) throw new Error("Invalid credentials");
+  async loginUser(email, password) {
+    const user = await this.User.findOne({ email });
+    if (!user) throw new Error("User not found");
 
-        const token = jwt.sign(
-        { id: user._id, email: user.email },
-        process.env.JWT_SECRET,
-        { expiresIn: "1h" }
-        );
+    const isMatch = await this.bcrypt.compare(password, user.password);
+    if (!isMatch) throw new Error("Invalid credentials");
 
-        return { user, token };
-    }
+    const token = this.jwt.sign(
+      { id: user._id, email: user.email },
+      this.jwtSecret,
+      { expiresIn: "1h" }
+    );
+
+    return { user, token };
+  }
 
   async getUserById(id) {
-    return await User.findById(id);
+    return await this.User.findById(id);
   }
 
   async getAllUsers() {
-    return await User.find();
+    return await this.User.find();
   }
 }
 
-export default new UserService();
+export default UserService;
