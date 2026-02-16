@@ -9,3 +9,5 @@
 - React Native
 - Nodejs
 - MongoDB
+
+[Web version](https://only-planz-bpnimgqht-aryan-mohanlalls-projects.vercel.app/)
