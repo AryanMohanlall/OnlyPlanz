@@ -1,6 +1,6 @@
 import { View, Text, Image, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import tw from 'twrnc'
+import tw from 'twrnc';
 
 export default function ViewProfile(){
     return(
