@@ -4,7 +4,6 @@ import CommentSection from "./comment-section";
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import { Send } from 'lucide-react-native';
-import { Button } from "@react-navigation/elements";
 
 type PostProps = {
   username: string;
@@ -48,13 +47,13 @@ export default function Post({ username, content, image }: PostProps) {
         resizeMode="cover"
       />
 
-      <Pressable
-        style={tw`absolute bottom-3 right-3 p-2 rounded-full shadow-md`}
-        onPress={()=>router.push("/(tabs)/chatroom")}
+      {/* Chat/DM */}
+      <Pressable style={tw`absolute bottom-3 right-3 bg-blue-500 p-2 rounded-full shadow-md`}
+        onPress={()=>{router.push("/(tabs)/chatroom")}}
       >
-        <Send size={20} color="black"/>
+        <Send size={20} color="black" />
       </Pressable>
-      
+
     </Pressable>
 
           {/* Modal */}

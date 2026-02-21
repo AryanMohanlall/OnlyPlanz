@@ -2,14 +2,15 @@
   "name": "onlyplanz",
   "main": "expo-router/entry",
   "version": "1.0.0",
-  "scripts": {
+"scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "expo lint"
-  },
+    "lint": "expo lint",
+    "build:web": "npx expo export --platform web"
+},
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
     "@react-navigation/bottom-tabs": "^7.4.0",
@@ -36,9 +37,9 @@
     "react-native-reanimated": "~4.1.1",
     "react-native-safe-area-context": "~5.6.0",
     "react-native-screens": "~4.16.0",
+    "react-native-svg": "15.12.1",
     "react-native-web": "~0.21.0",
     "react-native-worklets": "0.5.1",
-    "tailwindcss": "^3.4.19",
     "twrnc": "^4.16.0"
   },
   "devDependencies": {
