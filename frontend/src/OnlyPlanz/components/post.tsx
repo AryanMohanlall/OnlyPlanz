@@ -49,7 +49,7 @@ export default function Post({ username, content, image }: PostProps) {
 
       {/* Chat/DM */}
       <Pressable style={tw`absolute bottom-3 right-3 bg-blue-500 p-2 rounded-full shadow-md`}
-        onPress={()=>{router.push("/(tabs)/chatroom")}}
+        onPress={()=>{router.push("/chatroom")}}
       >
         <Send size={20} color="black" />
       </Pressable>

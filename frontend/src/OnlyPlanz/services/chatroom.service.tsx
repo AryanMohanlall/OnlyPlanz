@@ -17,7 +17,11 @@ export const useChat = () => {
         const newMessage: MessageProp = {
             label: "me",
             content: content,
-            timestamp: new Date().toLocaleTimeString(),
+            timestamp: new Date().toLocaleTimeString([], {
+                                                            hour: '2-digit',
+                                                            minute: '2-digit',
+                                                            hour12: false
+                                                            }),
         };
         setMessages((prev) => [...prev, newMessage]);
     };
